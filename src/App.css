@@ -20,6 +20,10 @@ body {
   margin: 10px;
 }
 
+button {
+  color: black;
+}
+
 .NavBar {
   display: flex;
   flex: 1;

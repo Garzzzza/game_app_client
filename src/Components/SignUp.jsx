@@ -1,5 +1,5 @@
 import React, { useContext } from "react"
-import { AuthContext } from "../Context/SignContext"
+import { AuthContext } from "../Context/AuthContext"
 
 const SignUp = () => {
 
@@ -38,7 +38,7 @@ const SignUp = () => {
             </div>
             <div className="formDiv">
                 <div className="formInputTitle">
-                    Last Name
+                    Nick Name
                 </div>
                 <input type="text" value={nickName}
                     onChange={
