@@ -1,16 +1,19 @@
 import { useState, createContext } from "react";
 import axios from "axios";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
+  const navigate = useNavigate();
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [rePass, setRePass] = useState("");
-  const [nickName, setNickName] = useState("");
+  const [nickname, setNickname] = useState("");
+  const [error, setError] = useState("");
 
   const resetUserStates = () => {
     setFirstName("");
@@ -18,19 +21,16 @@ const AuthContextProvider = ({ children }) => {
     setEmail("");
     setPass("");
     setRePass("");
-    setNickName("");
+    setNickname("");
+    setError("");
   };
 
   const handleSignUp = async () => {
-    if (pass !== rePass) {
-      alert("Passwords do not match!");
-      return;
-    }
     const userData = {
-      firstName: firstName,
-      lastName: lastName,
-      nickName: nickName,
-      email: email,
+      firstName: firstName.toLowerCase(),
+      lastName: lastName.toLowerCase(),
+      nickname: nickname.toLowerCase(),
+      email: email.toLowerCase(),
       password: pass,
       rePassword: rePass,
     };
@@ -41,9 +41,10 @@ const AuthContextProvider = ({ children }) => {
         userData
       );
       resetUserStates();
-      Navigate("/");
+      navigate("/");
     } catch (error) {
       console.error("Error:", error);
+      setError(error.response.data);
     }
   };
 
@@ -54,8 +55,8 @@ const AuthContextProvider = ({ children }) => {
         setFirstName,
         lastName,
         setLastName,
-        nickName,
-        setNickName,
+        nickname,
+        setNickname,
         email,
         setEmail,
         pass,
@@ -63,6 +64,8 @@ const AuthContextProvider = ({ children }) => {
         rePass,
         setRePass,
         handleSignUp,
+        error,
+        setError,
       }}
     >
       {children}
