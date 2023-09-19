@@ -24,6 +24,11 @@ button {
   color: black;
 }
 
+input {
+  color: black;
+}
+
+
 .NavBar {
   display: flex;
   flex: 1;
