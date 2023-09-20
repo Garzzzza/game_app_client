@@ -15,6 +15,7 @@ const AuthContextProvider = ({ children }) => {
   const [nickname, setNickname] = useState("");
   const [error, setError] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token") || "");
+  const [loggedUser, setLoggedUser] = useState({});
 
   const resetAuthStates = () => {
     setFirstName("");
@@ -66,12 +67,25 @@ const AuthContextProvider = ({ children }) => {
       setError("");
       navigate("/");
 
-      // getSignedUserById();
+      getLoggedUser();
     } catch (error) {
       console.log(error.response);
       setError(error.response.data);
     }
   };
+
+  async function getLoggedUser() {
+    try {
+      const res = await axios.get(
+        process.env.REACT_APP_SERVER_URL + "/users/loggeduser",
+        { headers: { Authorization: "Bearer " + token } }
+      );
+
+      setLoggedUser(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   return (
     <AuthContext.Provider
@@ -92,6 +106,8 @@ const AuthContextProvider = ({ children }) => {
         error,
         setError,
         handleLogin,
+        loggedUser,
+        getLoggedUser,
       }}
     >
       {children}
