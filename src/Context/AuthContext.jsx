@@ -14,8 +14,9 @@ const AuthContextProvider = ({ children }) => {
   const [rePass, setRePass] = useState("");
   const [nickname, setNickname] = useState("");
   const [error, setError] = useState("");
+  const [token, setToken] = useState(localStorage.getItem("token") || "");
 
-  const resetUserStates = () => {
+  const resetAuthStates = () => {
     setFirstName("");
     setLastName("");
     setEmail("");
@@ -26,6 +27,11 @@ const AuthContextProvider = ({ children }) => {
   };
 
   const handleSignUp = async () => {
+    if (!firstName || !lastName || !email || !pass || !rePass || !nickname) {
+      setError("All fields are required!");
+      return;
+    }
+
     const userData = {
       firstName: firstName.toLowerCase(),
       lastName: lastName.toLowerCase(),
@@ -40,10 +46,29 @@ const AuthContextProvider = ({ children }) => {
         process.env.REACT_APP_SERVER_URL + "/users",
         userData
       );
-      resetUserStates();
+      resetAuthStates();
       navigate("/");
     } catch (error) {
       console.error("Error:", error);
+      setError(error.response.data);
+    }
+  };
+
+  const handleLogin = async () => {
+    try {
+      const result = await axios.post(
+        process.env.REACT_APP_SERVER_URL + "/users/login",
+        { email: email, password: pass }
+      );
+      setToken(result.data.token);
+      localStorage.setItem("token", result.data.token);
+      resetAuthStates();
+      setError("");
+      navigate("/");
+
+      // getSignedUserById();
+    } catch (error) {
+      console.log(error.response);
       setError(error.response.data);
     }
   };
@@ -66,6 +91,7 @@ const AuthContextProvider = ({ children }) => {
         handleSignUp,
         error,
         setError,
+        handleLogin,
       }}
     >
       {children}

@@ -27,6 +27,7 @@ const SignUp = () => {
       <div className="formDiv">
         <div className="formInputTitle">First Name</div>
         <input
+          required
           type="text"
           value={firstName}
           onChange={(e) => {
@@ -37,6 +38,7 @@ const SignUp = () => {
       <div className="formDiv">
         <div className="formInputTitle">Last Name</div>
         <input
+          required
           type="text"
           value={lastName}
           onChange={(e) => {
@@ -47,6 +49,7 @@ const SignUp = () => {
       <div className="formDiv">
         <div className="formInputTitle">Nickname</div>
         <input
+          required
           type="text"
           value={nickname}
           onChange={(e) => {
@@ -57,6 +60,7 @@ const SignUp = () => {
       <div className="formDiv">
         <div className="formInputTitle">Email</div>
         <input
+          required
           type="text"
           value={email}
           onChange={(e) => {
@@ -68,6 +72,7 @@ const SignUp = () => {
       <div className="formDiv">
         <div className="formInputTitle">Password</div>
         <input
+          required
           type="password"
           value={pass}
           onChange={(e) => {
@@ -78,6 +83,7 @@ const SignUp = () => {
       <div className="formDiv">
         <div className="formInputTitle">RePassword</div>
         <input
+          required
           type="password"
           value={rePass}
           onChange={(e) => {
