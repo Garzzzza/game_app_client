@@ -8,7 +8,11 @@ const Home = () => {
     getLoggedUser();
   }, []);
 
-  return <div>Welcome To The Pokemon Kingdom {loggedUser.nickname}</div>;
+  return (
+    <div>
+      <div>Welcome To The Pokemon Kingdom {loggedUser.nickname}</div>
+    </div>
+  );
 };
 
 export default Home;

@@ -20,7 +20,10 @@ const NavBar = () => {
         Sign Up
       </Link>
       <Link className={getClassName("/login")} to="/login">
-        Login{" "}
+        Login
+      </Link>
+      <Link className={getClassName("/scores")} to="/scores">
+        Scores
       </Link>
     </div>
   );

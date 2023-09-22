@@ -74,6 +74,23 @@ input {
   justify-self: flex-start;
 }
 
+.scoresTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 30px;
+}
+
+.scoresTable th,
+.scoresTable td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.scoresTable th {
+  background-color: #131313;
+}
+
 .error {
   color: rgb(162, 41, 41);
 }
