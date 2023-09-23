@@ -3,6 +3,7 @@
   padding: 5px;
   box-sizing: border-box;
   font-size: 16px;
+  font-weight: 300;
   color: white;
 }
 
@@ -20,6 +21,16 @@ body {
   margin: 10px;
 }
 
+h1 {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: 400;
+}
+
 button {
   color: black;
 }
@@ -28,6 +39,14 @@ input {
   color: black;
 }
 
+img {
+  width: 70px;
+  height: 70px;
+}
+
+.profile {
+  display: flex;
+}
 
 .NavBar {
   display: flex;
@@ -60,8 +79,10 @@ input {
   background-color: grey;
   padding: 10px;
   margin: 0;
-
 }
+
+
+
 
 .formDiv {
   display: flex;

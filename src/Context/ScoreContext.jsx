@@ -7,10 +7,49 @@ const ScoreContext = createContext();
 
 const ScoreContextProvider = ({ children }) => {
   const navigate = useNavigate();
-  const { token } = useContext(AuthContext);
-
+  const { token, getLoggedUser, loggedUser } = useContext(AuthContext);
   const [allScoresArray, setAllScoresArray] = useState([]);
   const [userScoresArray, setUserScoresArray] = useState([]);
+  const [currentsocre, setCurrentScore] = useState(null);
+  const [currentGame, setCurrentGame] = useState("");
+
+  // async function postScoreKGame() {
+  //   try {
+  //     getLoggedUser();
+  //     const scoreToPost = {
+  //       nickname: loggedUser.nickname,
+  //       score: score,
+  //     };
+  //     const response = await axios.post(
+  //       process.env.REACT_APP_SERVER_URL + "/scores/kgame",
+  //       scoreToPost,
+  //       { headers: { Authorization: "Bearer " + token } }
+  //     );
+  //     getAllScores();
+  //     getUserScores();
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
+
+  // async function postScoreIGame() {
+  //   try {
+  //     getLoggedUser();
+  //     const scoreToPost = {
+  //       nickname: loggedUser.nickname,
+  //       score: score,
+  //     };
+  //     const response = await axios.post(
+  //       process.env.REACT_APP_SERVER_URL + "/scores/igame",
+  //       scoreToPost,
+  //       { headers: { Authorization: "Bearer " + token } }
+  //     );
+  //     getAllScores();
+  //     getUserScores();
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
 
   async function getAllScores() {
     try {

@@ -11,6 +11,8 @@ const SignUp = () => {
     setNickname,
     email,
     setEmail,
+    picture,
+    setPicture,
     pass,
     setPass,
     rePass,
@@ -66,6 +68,14 @@ const SignUp = () => {
           onChange={(e) => {
             setEmail(e.target.value);
           }}
+        ></input>
+      </div>
+      <div className="formClause">
+        <div className="formInputTitle">picture:</div>
+        <input
+          required
+          type="file"
+          onChange={(e) => setPicture(e.target.files[0])}
         ></input>
       </div>
 

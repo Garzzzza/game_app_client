@@ -10,11 +10,12 @@ const AuthContextProvider = ({ children }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [picture, setPicture] = useState(null);
   const [pass, setPass] = useState("");
   const [rePass, setRePass] = useState("");
   const [nickname, setNickname] = useState("");
   const [error, setError] = useState("");
-  const [token, setToken] = useState(localStorage.getItem("token") || "");
+  const [token, setToken] = useState(localStorage.getItem("token") || null);
   const [loggedUser, setLoggedUser] = useState({});
 
   const resetAuthStates = () => {
@@ -25,6 +26,7 @@ const AuthContextProvider = ({ children }) => {
     setRePass("");
     setNickname("");
     setError("");
+    setPicture(null);
   };
 
   const handleSignUp = async () => {
@@ -33,16 +35,16 @@ const AuthContextProvider = ({ children }) => {
       return;
     }
 
-    const userData = {
-      firstName: firstName.toLowerCase(),
-      lastName: lastName.toLowerCase(),
-      nickname: nickname.toLowerCase(),
-      email: email.toLowerCase(),
-      password: pass,
-      rePassword: rePass,
-    };
-
     try {
+      const userData = new FormData();
+      userData.append("firstName", firstName.toLowerCase());
+      userData.append("lastName", lastName.toLowerCase());
+      userData.append("nickname", nickname.toLowerCase());
+      userData.append("email", email.toLowerCase());
+      userData.append("picture", picture);
+      userData.append("password", pass);
+      userData.append("rePassword", rePass);
+
       const response = await axios.post(
         process.env.REACT_APP_SERVER_URL + "/users",
         userData
@@ -87,6 +89,13 @@ const AuthContextProvider = ({ children }) => {
     }
   }
 
+  const handleLogOut = async () => {
+    navigate("/");
+    setToken("");
+    localStorage.clear();
+    setLoggedUser({});
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -98,6 +107,8 @@ const AuthContextProvider = ({ children }) => {
         setNickname,
         email,
         setEmail,
+        picture,
+        setPicture,
         pass,
         setPass,
         rePass,
@@ -108,6 +119,8 @@ const AuthContextProvider = ({ children }) => {
         handleLogin,
         loggedUser,
         getLoggedUser,
+        token,
+        handleLogOut,
       }}
     >
       {children}
