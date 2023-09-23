@@ -8,8 +8,12 @@ const ScoreContext = createContext();
 const ScoreContextProvider = ({ children }) => {
   const navigate = useNavigate();
   const { token, getLoggedUser, loggedUser } = useContext(AuthContext);
-  const [allScoresArray, setAllScoresArray] = useState([]);
-  const [userScoresArray, setUserScoresArray] = useState([]);
+
+  const [allScoresArrayKGame, setAllScoresArrayKGame] = useState([]);
+  const [userScoresArrayKGame, setUserScoresArrayKGame] = useState([]);
+  const [allScoresArrayIGame, setAllScoresArrayIGame] = useState([]);
+  const [userScoresArrayIGame, setUserScoresArrayIGame] = useState([]);
+
   const [currentScore, setCurrentScore] = useState(null);
   const [currentGame, setCurrentGame] = useState("");
 
@@ -23,8 +27,8 @@ const ScoreContextProvider = ({ children }) => {
         scoreToPost,
         { headers: { Authorization: "Bearer " + token } }
       );
-      getAllScores();
-      getUserScores();
+      getAllScores(game);
+      getUserScores(game);
     } catch (err) {
       console.log(err);
     }
@@ -32,11 +36,18 @@ const ScoreContextProvider = ({ children }) => {
 
   async function getAllScores(game) {
     try {
+      let setArray;
+      if (game === "kgame") {
+        setArray = setAllScoresArrayKGame;
+      } else if (game === "igame") {
+        setArray = setAllScoresArrayIGame;
+      }
+
       const response = await axios.get(
         process.env.REACT_APP_SERVER_URL + "/scores/" + game,
         { headers: { Authorization: "Bearer " + token } }
       );
-      setAllScoresArray(response.data);
+      setArray(response.data);
     } catch (err) {
       console.log(err);
     }
@@ -44,11 +55,18 @@ const ScoreContextProvider = ({ children }) => {
 
   async function getUserScores(game) {
     try {
+      let setArray;
+      if (game === "kgame") {
+        setArray = setUserScoresArrayKGame;
+      } else if (game === "igame") {
+        setArray = setUserScoresArrayIGame;
+      }
+
       const response = await axios.get(
         process.env.REACT_APP_SERVER_URL + "/scores/user_score/" + game,
         { headers: { Authorization: "Bearer " + token } }
       );
-      setUserScoresArray(response.data);
+      setArray(response.data);
     } catch (err) {
       console.log(err);
     }
@@ -71,7 +89,7 @@ const ScoreContextProvider = ({ children }) => {
       (a, b) => new Date(b.date) - new Date(a.date)
     )[0];
     return (
-      <tr>
+      <tr key={Math.random()}>
         <td>{latestScore.nickname}</td>
         <td>{latestScore.score}</td>
         <td>{latestScore.date}</td>
@@ -85,7 +103,7 @@ const ScoreContextProvider = ({ children }) => {
       (a, b) => b.score - a.score
     )[0];
     return (
-      <tr>
+      <tr key={Math.random()}>
         <td>{latestScore.nickname}</td>
         <td>{latestScore.score}</td>
         <td>{latestScore.date}</td>
@@ -100,11 +118,15 @@ const ScoreContextProvider = ({ children }) => {
         setCurrentGame,
         getAllScores,
         renderScores,
-        allScoresArray,
-        setAllScoresArray,
+        allScoresArrayKGame,
+        setAllScoresArrayKGame,
+        userScoresArrayKGame,
+        setUserScoresArrayKGame,
         getUserScores,
-        userScoresArray,
-        setUserScoresArray,
+        allScoresArrayIGame,
+        setAllScoresArrayIGame,
+        userScoresArrayIGame,
+        setUserScoresArrayIGame,
         renderLastUserScore,
         renderHighestUserScore,
       }}

@@ -3,8 +3,16 @@ import { ScoreContext } from "../Context/ScoreContext";
 import UserScore from "../Components/UserScore";
 
 const ScoresPage = () => {
-  const { getAllScores, renderScores, allScoresArray, setAllScoresArray } =
-    useContext(ScoreContext);
+  const {
+    userScoresArrayKGame,
+    setUserScoresArrayKGame,
+    getUserScores,
+    allScoresArrayIGame,
+    setAllScoresArrayIGame,
+    userScoresArrayIGame,
+    renderScores,
+    getAllScores,
+  } = useContext(ScoreContext);
 
   useEffect(() => {
     getAllScores("kgame");
@@ -22,7 +30,7 @@ const ScoresPage = () => {
               <th> Date</th>
             </tr>
           </thead>
-          <tbody> {renderScores(allScoresArray)}</tbody>
+          <tbody> {renderScores(userScoresArrayKGame)}</tbody>
         </table>
       </div>
       <div>
