@@ -16,13 +16,18 @@ const Home = () => {
         <div>
           <h1>Welcome To The Pokemon Kingdom </h1>
         </div>
-        <div>
-          <img src={loggedUser.picture} alt="profile picture" />
-        </div>
-        <div>
-          <h1>{loggedUser.nickname}</h1>
-        </div>
+        {token && (
+          <div>
+            <img src={loggedUser.picture} alt="profile picture" />
+          </div>
+        )}
+        {token && (
+          <div>
+            <h1>{loggedUser.nickname}</h1>
+          </div>
+        )}
       </div>
+
       {token && <UserScore />}
       {token && (
         <div>

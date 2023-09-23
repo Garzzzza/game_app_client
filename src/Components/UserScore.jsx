@@ -10,6 +10,8 @@ const UserScore = () => {
     getUserScores,
     setAllScoresArray,
     userScoresArray,
+    renderLastUserScore,
+    renderHighestUserScore,
   } = useContext(ScoreContext);
 
   const { getLoggedUser, loggedUser } = useContext(AuthContext);
@@ -18,34 +20,6 @@ const UserScore = () => {
     getUserScores();
     getLoggedUser();
   }, []);
-
-  function renderLastUserScore(relevantScoresArray) {
-    if (relevantScoresArray.length < 1) return null;
-    const latestScore = relevantScoresArray.sort(
-      (a, b) => new Date(b.date) - new Date(a.date)
-    )[0];
-    return (
-      <tr>
-        <td>{latestScore.nickname}</td>
-        <td>{latestScore.score}</td>
-        <td>{latestScore.date}</td>
-      </tr>
-    );
-  }
-
-  function renderHighestUserScore(relevantScoresArray) {
-    if (relevantScoresArray.length < 1) return null;
-    const latestScore = relevantScoresArray.sort(
-      (a, b) => b.score - a.score
-    )[0];
-    return (
-      <tr>
-        <td>{latestScore.nickname}</td>
-        <td>{latestScore.score}</td>
-        <td>{latestScore.date}</td>
-      </tr>
-    );
-  }
 
   return (
     <div>

@@ -13,7 +13,7 @@ const ScoresPage = () => {
   return (
     <div>
       <div>
-        <h1>All scores</h1>
+        <h1>KGame Scores</h1>
         <table className="scoresTable">
           <thead>
             <tr>
@@ -22,11 +22,11 @@ const ScoresPage = () => {
               <th> Date</th>
             </tr>
           </thead>
-          <tbody> {renderScores(allScoresArray)}</tbody>
+          <tbody> {renderScores(allScoresArray("kgame"))}</tbody>
         </table>
       </div>
       <div>
-        <h1>user's scores</h1>
+        <h1>User's KGame's Scores</h1>
         <UserScore />
       </div>
     </div>

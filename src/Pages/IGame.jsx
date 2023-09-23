@@ -7,7 +7,7 @@ const IGame = () => {
   const { currentGame, setCurrentGame } = useContext(ScoreContext);
 
   useEffect(() => {
-    setCurrentGame("IGame");
+    setCurrentGame("igame");
   }, []);
 
   return (
