@@ -118,11 +118,12 @@ const ScoreContextProvider = ({ children }) => {
         setCurrentGame,
         getAllScores,
         renderScores,
+        getUserScores,
+
         allScoresArrayKGame,
         setAllScoresArrayKGame,
         userScoresArrayKGame,
         setUserScoresArrayKGame,
-        getUserScores,
         allScoresArrayIGame,
         setAllScoresArrayIGame,
         userScoresArrayIGame,

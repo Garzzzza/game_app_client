@@ -6,12 +6,15 @@ const UserScore = () => {
   const {
     currentGame,
     setCurrentGame,
-    getAllScores,
-    renderScores,
-    allScoresArray,
+    allScoresArrayKGame,
+    setAllScoresArrayKGame,
+    userScoresArrayKGame,
+    setUserScoresArrayKGame,
+    allScoresArrayIGame,
+    setAllScoresArrayIGame,
+    userScoresArrayIGame,
+    setUserScoresArrayIGame,
     getUserScores,
-    setAllScoresArray,
-    userScoresArray,
     renderLastUserScore,
     renderHighestUserScore,
   } = useContext(ScoreContext);
@@ -36,7 +39,7 @@ const UserScore = () => {
                 <th> Date</th>
               </tr>
             </thead>
-            <tbody> {renderLastUserScore(userScoresArray)}</tbody>
+            <tbody> {renderLastUserScore(userScoresArrayKGame)}</tbody>
           </table>
         </div>
       )}
@@ -64,7 +67,7 @@ const UserScore = () => {
                 <th> Date</th>
               </tr>
             </thead>
-            <tbody> {renderHighestUserScore(userScoresArray)}</tbody>
+            <tbody> {renderHighestUserScore(userScoresArrayIGame)}</tbody>
           </table>
         </div>
       )}

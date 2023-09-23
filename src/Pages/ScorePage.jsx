@@ -4,6 +4,7 @@ import UserScore from "../Components/UserScore";
 
 const ScoresPage = () => {
   const {
+    allScoresArrayKGame,
     userScoresArrayKGame,
     setUserScoresArrayKGame,
     getUserScores,
@@ -30,7 +31,7 @@ const ScoresPage = () => {
               <th> Date</th>
             </tr>
           </thead>
-          <tbody> {renderScores(userScoresArrayKGame)}</tbody>
+          <tbody> {renderScores(allScoresArrayKGame)}</tbody>
         </table>
       </div>
       <div>
