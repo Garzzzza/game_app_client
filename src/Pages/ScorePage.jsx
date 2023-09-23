@@ -7,7 +7,7 @@ const ScoresPage = () => {
     useContext(ScoreContext);
 
   useEffect(() => {
-    getAllScores();
+    getAllScores("kgame");
   }, []);
 
   return (
@@ -22,7 +22,7 @@ const ScoresPage = () => {
               <th> Date</th>
             </tr>
           </thead>
-          <tbody> {renderScores(allScoresArray("kgame"))}</tbody>
+          <tbody> {renderScores(allScoresArray)}</tbody>
         </table>
       </div>
       <div>

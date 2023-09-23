@@ -17,8 +17,8 @@ const UserScore = () => {
   const { getLoggedUser, loggedUser } = useContext(AuthContext);
 
   useEffect(() => {
-    getUserScores();
-    getLoggedUser();
+    getUserScores("kgame");
+    getLoggedUser("kgame");
   }, []);
 
   return (
@@ -36,7 +36,7 @@ const UserScore = () => {
           <tbody> {renderLastUserScore(userScoresArray)}</tbody>
         </table>
       </div>
-      <div>
+      {/* <div>
         <h2>{loggedUser.nickname} Last Score IGame </h2>
         <table className="scoresTable">
           <thead>
@@ -48,7 +48,7 @@ const UserScore = () => {
           </thead>
           <tbody> {renderLastUserScore(userScoresArray)}</tbody>
         </table>
-      </div>
+      </div>*/}
       <div>
         <h2> {loggedUser.nickname} Highest Score KGame</h2>
         <table className="scoresTable">
@@ -62,7 +62,7 @@ const UserScore = () => {
           <tbody> {renderHighestUserScore(userScoresArray)}</tbody>
         </table>
       </div>
-      <div>
+      {/* <div>
         <h2> {loggedUser.nickname} Highest Score IGame</h2>
         <table className="scoresTable">
           <thead>
@@ -74,7 +74,7 @@ const UserScore = () => {
           </thead>
           <tbody> {renderHighestUserScore(userScoresArray)}</tbody>
         </table>
-      </div>
+      </div> */}
     </div>
   );
 };

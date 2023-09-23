@@ -96,6 +96,8 @@ const ScoreContextProvider = ({ children }) => {
   return (
     <ScoreContext.Provider
       value={{
+        currentGame,
+        setCurrentGame,
         getAllScores,
         renderScores,
         allScoresArray,
