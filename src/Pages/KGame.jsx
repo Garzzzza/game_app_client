@@ -1,37 +1,44 @@
 import React, { useContext, useEffect, useState } from "react";
 import UserScore from "../Components/UserScore";
 import { ScoreContext } from "../Context/ScoreContext";
-import Wordle from '../Components/Wordle';
+import Wordle from "../Components/Wordle";
+import { AuthContext } from "../Context/AuthContext";
+import axios from "axios";
 
 const KGame = () => {
   const { currentGame, setCurrentGame } = useContext(ScoreContext);
+  const { token } = useContext(AuthContext);
+
+  const [solutions, setSolutions] = useState([]);
+
+  const getSolutionsArray = async () => {
+    try {
+      const response = await axios.get(
+        process.env.REACT_APP_SERVER_URL + "/kgame",
+        { headers: { Authorization: "Bearer " + token } }
+      );
+      setSolutions(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     setCurrentGame("kgame");
+    getSolutionsArray();
   }, []);
-
-
-  // kellins code
-  const [solutions] = useState([
-    { word: "ninja", id: 1 },
-    { word: "apple", id: 2 },
-    { word: "banana", id: 3 },
-    { word: "cherry", id: 4 },
-    { word: "grape", id: 5 },
-  ]);
 
   const [randomSolution, setRandomSolution] = useState(null);
 
-  useEffect(() => {
-  }, [randomSolution]);
+  useEffect(() => {}, [randomSolution]);
 
   const getRandomSolution = () => {
     const randomIndex = Math.floor(Math.random() * solutions.length);
     const randomWord = solutions[randomIndex].word;
-    const randomWordId = solutions[randomIndex].id;
+    const randomWordId = solutions[randomIndex]._id;
 
     // Update the randomSolution state in the App component
-    setRandomSolution({ word: randomWord, id: randomWordId });
+    setRandomSolution({ word: randomWord, _id: randomWordId });
 
     // Log the random word and its ID to the console
     console.log(`Random Word: ${randomWord}, ID: ${randomWordId}`);
@@ -48,7 +55,7 @@ const KGame = () => {
       {randomSolution && (
         <div>
           <p>Random Word: {randomSolution.word}</p>
-          <p>Random Word ID: {randomSolution.id}</p>
+          <p>Random Word ID: {randomSolution._id}</p>
         </div>
       )}
 
