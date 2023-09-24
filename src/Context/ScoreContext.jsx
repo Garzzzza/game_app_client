@@ -13,7 +13,6 @@ const ScoreContextProvider = ({ children }) => {
   const [userScoresArrayKGame, setUserScoresArrayKGame] = useState([]);
   const [allScoresArrayIGame, setAllScoresArrayIGame] = useState([]);
   const [userScoresArrayIGame, setUserScoresArrayIGame] = useState([]);
-
   const [currentScore, setCurrentScore] = useState(null);
   const [currentGame, setCurrentGame] = useState("");
 
@@ -114,6 +113,7 @@ const ScoreContextProvider = ({ children }) => {
   return (
     <ScoreContext.Provider
       value={{
+        postScore,
         currentGame,
         setCurrentGame,
         getAllScores,
