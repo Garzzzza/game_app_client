@@ -1,3 +1,5 @@
+
+import axios from "axios"; // Import Axios
 import React, { useContext, useEffect, useState } from "react";
 import UserScore from "../Components/UserScore";
 import { ScoreContext } from "../Context/ScoreContext";
@@ -6,21 +8,36 @@ import Wordle from '../Components/Wordle';
 const KGame = () => {
   const { currentGame, setCurrentGame } = useContext(ScoreContext);
 
+  const [showButton, setShowButton] = useState(true); 
+
+  const [randomSolution, setRandomSolution] = useState(null);
+
   useEffect(() => {
     setCurrentGame("kgame");
   }, []);
 
+  const handleShowButton = (value) => {
+    setShowButton(value);
+  };
 
-  // kellins code
+  const handleSolution = () => {
+    setRandomSolution(null);
+  };
+  
   const [solutions] = useState([
-    { word: "ninja", id: 1 },
-    { word: "apple", id: 2 },
-    { word: "banana", id: 3 },
-    { word: "cherry", id: 4 },
-    { word: "grape", id: 5 },
-  ]);
+    { word: "Whisk", id: 1, description: "This kitchen tool sounds like a fast cat's tail." },
+    { word: "Giddy", id: 2, description: "The feeling you get on a rollercoaster or when you win a prize." },
+    { word: "Plump", id: 3, description: "It's what happens to your cheeks when you eat too many cookies." },
+    { word: "Jelly", id: 4, description: "Peanut butter's best friend in a sandwich." },
+    { word: "Beach", id: 5, description: "Where the sand meets the waves, and the sun loves to shine." },
+    { word: "Magic", id: 6, description: "It makes rabbits disappear and brings smiles to faces." },
+    { word: "Robot", id: 7, description: "A mechanical friend that can do some cool tricks." },
+    { word: "Dance", id: 8, description: "What you do when the music takes control of your feet." },
+    { word: "Tasty", id: 9, description: "Food that makes your taste buds throw a party." },
+    { word: "Smile", id: 10, description: "What happens when you're happy or trying to make someone else happy." },
+]);
 
-  const [randomSolution, setRandomSolution] = useState(null);
+ 
 
   useEffect(() => {
   }, [randomSolution]);
@@ -29,34 +46,37 @@ const KGame = () => {
     const randomIndex = Math.floor(Math.random() * solutions.length);
     const randomWord = solutions[randomIndex].word;
     const randomWordId = solutions[randomIndex].id;
+    const randomWordDis = solutions[randomIndex].description;
 
     // Update the randomSolution state in the App component
-    setRandomSolution({ word: randomWord, id: randomWordId });
+    setRandomSolution({ word: randomWord, id: randomWordId, description: randomWordDis });
 
     // Log the random word and its ID to the console
     console.log(`Random Word: ${randomWord}, ID: ${randomWordId}`);
+
+    // Set showButton to true when message is shown
+    handleShowButton(false);
   };
 
   return (
     <div>
-      <h1>KGame</h1>
+      <h1>WordleWonder</h1>
       <UserScore />
 
-      {/* Kellins code */}
-      <h1>Wordle (Lingo)</h1>
       {/* Display the random word and its ID */}
       {randomSolution && (
         <div>
-          <p>Random Word: {randomSolution.word}</p>
-          <p>Random Word ID: {randomSolution.id}</p>
+          <p>Description: {randomSolution.description}</p>
         </div>
       )}
 
-      {randomSolution && <Wordle solution={randomSolution.word} />}
+      {randomSolution && <Wordle solution={randomSolution.word} handleShowButton={handleShowButton}  handleSolution={handleSolution} />}
       {/* Button to trigger getRandomSolution */}
-      <button onClick={getRandomSolution}>Get Random Word and ID</button>
+      {showButton && <button onClick={getRandomSolution}>Let's play!</button>}
     </div>
   );
 };
 
 export default KGame;
+
+
