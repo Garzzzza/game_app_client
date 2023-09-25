@@ -35,12 +35,12 @@ const NavBar = () => {
       )}
       {token && (
         <Link className={getClassName("/igame")} to="/igame">
-          Igame
+          PokeTanks
         </Link>
       )}
       {token && (
         <Link className={getClassName("/kgame")} to="/kgame">
-          Kgame
+          Wordle
         </Link>
       )}
       {token && (

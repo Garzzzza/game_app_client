@@ -30,7 +30,7 @@ const ScoresPage = () => {
   return (
     <div>
       <div>
-        <h1>KGame Scores</h1>
+        <h1>Wordle Scores</h1>
         <table className="scoresTable">
           <thead>
             <tr>
@@ -43,11 +43,11 @@ const ScoresPage = () => {
         </table>
       </div>
       <div>
-        <h1>User's KGame's Scores</h1>
+        <h1>User's Wordle Scores</h1>
         <UserScore />
       </div>
       <div>
-        <h1>TOP 5 KGame's Scores</h1>
+        <h1>TOP 5 Wordle Scores</h1>
         <table className="scoresTable">
           <thead>
             <tr>

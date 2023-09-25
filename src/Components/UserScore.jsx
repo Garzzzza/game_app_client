@@ -32,7 +32,7 @@ const UserScore = () => {
     <div>
       {currentGame !== "igame" && (
         <div>
-          <h2>{loggedUser.nickname} Last Score KGame </h2>
+          <h2>{loggedUser.nickname} Last Score Wordle </h2>
           <table className="scoresTable">
             <thead>
               <tr>
@@ -60,7 +60,7 @@ const UserScore = () => {
       </div>*/}
       {currentGame !== "igame" && (
         <div>
-          <h2> {loggedUser.nickname} Highest Score KGame</h2>
+          <h2> {loggedUser.nickname} Highest Score Wordle</h2>
           <table className="scoresTable">
             <thead>
               <tr>
@@ -74,7 +74,7 @@ const UserScore = () => {
         </div>
       )}
       {/* <div>
-        <h2> {loggedUser.nickname} Highest Score IGame</h2>
+        <h2> {loggedUser.nickname} Highest Score PokeTanks</h2>
         <table className="scoresTable">
           <thead>
             <tr>

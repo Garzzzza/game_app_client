@@ -16,7 +16,7 @@ const Home = () => {
     <div>
       <div className="profile">
         <div>
-          <h1>Welcome To The Pokemon Kingdom </h1>
+          <h1>Welcome To The Kingdom </h1>
         </div>
         {token && (
           <div>
