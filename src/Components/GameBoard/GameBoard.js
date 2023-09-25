@@ -333,28 +333,24 @@ const GameBoard = () => {
             onClick={() => handlePowerClick(12.5)}
           >
             <span className="power-text">1x</span>
-            <img src="./explosive.png" alt="1x Charge" />
           </div>
           <div
             className={`power-button ${power === 25 ? "selected" : ""}`}
             onClick={() => handlePowerClick(25)}
           >
             <span className="power-text">2x</span>
-            <img src="./explosive.png" alt="2x Charge" />
           </div>
           <div
             className={`power-button ${power === 37.5 ? "selected" : ""}`}
             onClick={() => handlePowerClick(37.5)}
           >
             <span className="power-text">3x</span>
-            <img src="./explosive.png" alt="3x Charge" />
           </div>
           <div
             className={`power-button ${power === 50 ? "selected" : ""}`}
             onClick={() => handlePowerClick(50)}
           >
             <span className="power-text">4x</span>
-            <img src="./explosive.png" alt="4x Charge" />
           </div>
 
           <div class="instructions">
@@ -368,8 +364,8 @@ const GameBoard = () => {
           </div>
 
           <div id="angle-display">
-            <span>{effectiveAngle}</span>
-            <span>degrees</span>
+            <span id="angle-span">{effectiveAngle}</span>
+            <span id="degree-span" >degrees</span>
           </div>
         </div>
       </div>
