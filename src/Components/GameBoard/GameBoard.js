@@ -2,7 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import Phaser from "phaser";
 import "./gameboard.css";
 import Tank from "../../GameLogic/Tank/Tank";
-import audioFile from "./orc1.mp3";
+import audioFile1 from "./orc1.mp3";
+import audioFile2 from "./DECISIVE.mp3";
 import PlayerTankBody from "../../SVG/TankBody.svg";
 import PlayerTankBarrel from "../../SVG/TankBarrel.svg";
 import PlayerTankWheels from "../../SVG/TankWheels.svg";
@@ -20,7 +21,12 @@ const GameBoard = () => {
   const angleRef = useRef(0);
   const [playerTankHealth, setPlayerTankHealth] = useState(3);
   const [enemyTankHealth, setEnemyTankHealth] = useState(3);
+  const [hitCounter, setHitCounter] = useState(3); 
+  const [audioFile, setAudioFile] = useState('');
+
+
   const navigate = useNavigate();
+  
 
   const playerTankRef = useRef(new Tank(/*...*/));
   const enemyTankRef = useRef(new Tank(/*...*/));
@@ -45,7 +51,9 @@ const GameBoard = () => {
   let cursors;
   let playerTank;
   let enemyTank;
-  let shellIsActive = true; 
+  let shellIsActive = true;
+  let count  = 0;
+
 
   const barrelLength = 41.988;
   const initialX = 1000;
@@ -77,6 +85,16 @@ const GameBoard = () => {
       },
     },
   };
+
+  useEffect(() => {
+    if (hitCounter === 2) {
+      if (audioRef.current) {
+        audioRef.current.src = audioFile2; 
+        audioRef.current.load();
+        audioRef.current.play();
+      }
+    }
+  }, [hitCounter]);
 
   useEffect(() => {
     powerRef.current = power;
@@ -199,33 +217,41 @@ const GameBoard = () => {
     if (!playerTank || !cursors) {
       return;
     }
-  
+
     if (this.shell) {
       this.shell.update();
     }
-  
+
     const xPosition = Math.round(playerTank.container.x);
     const terrainData = mapData[xPosition.toString()] || null;
-  
+
     if (this.shell && shellIsActive) {
-      this.shell.checkCollision(enemyTank);
-  
-      if (!this.shell.isActive) {
-        shellIsActive = false;
-        playerTank.health -= 1;
-        if (playerTank.health <= 0) {
-          gameOver('You Lose');
+      const hitEnemy = this.shell.checkCollision(enemyTank);
+      if (hitEnemy) {
+        setHitCounter(prevCounter => prevCounter - 1);
+        count ++;
+        if (count >= 3) {
+          gameOver('You Win');
           return;
         }
       }
     }
-  
-    if (enemyTank.health <= 0) {
-      gameOver('You Win');
-      return; 
+
+    const playerTankX = playerTank.position.x;
+    const playerTankY = playerTank.position.y;
+    const enemyTankX = enemyTank.position.x;
+    const enemyTankY = enemyTank.position.y;
+    const collisionBoxSize = 20;
+
+    if (
+      enemyTankX >= playerTankX - collisionBoxSize &&
+      enemyTankX <= playerTankX + collisionBoxSize &&
+      enemyTankY >= playerTankY - collisionBoxSize &&
+      enemyTankY <= playerTankY + collisionBoxSize
+    ) {
+      gameOver('You Lose');
+      return;
     }
-  
-  
 
     if (terrainData && (cursors.left.isDown || cursors.right.isDown)) {
       angleRef.current = playerTank.getEffectiveAngle();
@@ -249,7 +275,7 @@ const GameBoard = () => {
     if (!gamePaused) {
       if (Phaser.Input.Keyboard.JustUp(cursors.space)) {
         if (playerTank && playerTank.isTurn) {
-          gamePaused = true; 
+          gamePaused = true;
 
           playerTank.shoot(this, powerRef.current);
 
@@ -274,52 +300,31 @@ const GameBoard = () => {
     setPower(newPower);
   };
 
+
   return (
     <div>
       <div id="game-container"></div>
       <div className="health-bar left">
-        <div
-          className={`health-bar-cell ${
-            playerTankHealth > 2
-              ? "green"
-              : playerTankHealth > 1
-              ? "yellow"
-              : "red"
-          }`}
-        ></div>
-        <div
-          className={`health-bar-cell ${
-            playerTankHealth > 1
-              ? "green"
-              : playerTankHealth > 0
-              ? "yellow"
-              : "red"
-          }`}
-        ></div>
-        <div
-          className={`health-bar-cell ${
-            playerTankHealth > 0 ? "green" : "red"
-          }`}
-        ></div>
+        {hitCounter >= 3 && <div className="health-bar-cell green"></div>}
+        {hitCounter >= 2 && <div className="health-bar-cell green"></div>}
+        {hitCounter >= 1 && <div className="health-bar-cell green"></div>}
       </div>
       <div className="health-bar right">
         <div
-          className={`health-bar-cell ${
-            enemyTankHealth > 2
-              ? "green"
-              : enemyTankHealth > 1
+          className={`health-bar-cell ${enemyTankHealth > 2
+            ? "green"
+            : enemyTankHealth > 1
               ? "yellow"
               : "red"
-          }`}
+            }`}
         ></div>
         <div
-          className={`health-bar-cell ${
-            enemyTankHealth > 1
-              ? "green"
-              : enemyTankHealth > 0
+          className={`health-bar-cell ${enemyTankHealth > 1
+            ? "green"
+            : enemyTankHealth > 0
               ? "yellow"
               : "red"
-          }`}
+            }`}
         ></div>
         <div
           className={`health-bar-cell ${enemyTankHealth > 0 ? "green" : "red"}`}
@@ -378,7 +383,7 @@ const GameBoard = () => {
       </button>
 
       <audio id="background-music" ref={audioRef} loop autoPlay>
-        <source src={audioFile} type="audio/mp3" />
+        <source src={audioFile1} type="audio/mp3" />
       </audio>
     </div>
   );

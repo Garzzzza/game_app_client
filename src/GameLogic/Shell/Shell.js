@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import mapData from '../../MapData/mapData.json';  // Adjust this path to where your JSON file is actually located
+import mapData from '../../MapData/mapData.json';  
 
 class Shell extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y, angle, power, wind = { angle: 0, force: 0 }) {
@@ -26,11 +26,6 @@ class Shell extends Phaser.Physics.Arcade.Sprite {
       return;
     }
 
-    if (this.y > 550) {
-      this.destroy();
-      return;
-    }
-    
     this.angle = Phaser.Math.RadToDeg(
       Math.atan2(-this.body.velocity.y, this.body.velocity.x)
     );
@@ -40,21 +35,21 @@ class Shell extends Phaser.Physics.Arcade.Sprite {
     this.setAccelerationY(-this.wind.force * Math.sin(windAngleInRadians));
   }
 
-
   checkCollision(enemyTank) {
     if (!this.isActive) {
-      return;
+      return false;
     }
 
     const terrainInfo = mapData[Math.floor(this.x).toString()];
     if (terrainInfo && this.y >= terrainInfo.y) {
       this.destroy();
-      return;
+      return false;
     }
 
     const enemyTankX = enemyTank.position.x;
     const enemyTankY = enemyTank.position.y;
-    const collisionBoxSize = 10; 
+    const collisionBoxSize = 50;
+
     if (
       this.x >= enemyTankX - collisionBoxSize &&
       this.x <= enemyTankX + collisionBoxSize &&
@@ -62,10 +57,11 @@ class Shell extends Phaser.Physics.Arcade.Sprite {
       this.y <= enemyTankY + collisionBoxSize
     ) {
       this.destroy();
-      enemyTank.health -= 1; 
+      return true;
     }
-  }
 
+    return false;
+  }
 
   destroy() {
     super.destroy();
