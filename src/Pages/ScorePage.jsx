@@ -4,6 +4,8 @@ import UserScore from "../Components/UserScore";
 
 const ScoresPage = () => {
   const {
+    currentGame,
+    setCurrentGame,
     allScoresArrayKGame,
     userScoresArrayKGame,
     setUserScoresArrayKGame,
@@ -17,6 +19,7 @@ const ScoresPage = () => {
 
   useEffect(() => {
     getAllScores("kgame");
+    setCurrentGame("");
   }, []);
 
   return (

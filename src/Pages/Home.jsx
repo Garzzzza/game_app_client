@@ -1,9 +1,11 @@
 import React, { useContext, useEffect } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import UserScore from "../Components/UserScore";
+import { ScoreContext } from "../Context/ScoreContext";
 
 const Home = () => {
   const { getLoggedUser, loggedUser, token } = useContext(AuthContext);
+  const { setCurrentScore, currentScore, postScore } = useContext(ScoreContext);
 
   useEffect(() => {
     getLoggedUser();
@@ -29,7 +31,7 @@ const Home = () => {
       </div>
 
       {token && <UserScore />}
-      {token && (
+      {/* {token && (
         <div>
           <button>Play KGame</button>
         </div>
@@ -38,7 +40,16 @@ const Home = () => {
         <div>
           <button>Play IGame</button>
         </div>
-      )}
+      )} */}
+
+      <button
+        onClick={() => {
+          setCurrentScore(7);
+        }}
+      >
+        setScore
+      </button>
+      <button onClick={() => postScore("kgame")}>postScore</button>
     </div>
   );
 };

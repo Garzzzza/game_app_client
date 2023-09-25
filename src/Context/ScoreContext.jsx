@@ -75,7 +75,7 @@ const ScoreContextProvider = ({ children }) => {
     return relevantScoresArray.map((score) => {
       return (
         <tr>
-          <td>{score.nickname}</td>
+          <td>{score.userId.nickname}</td>
           <td>{score.score}</td>
           <td>{score.date}</td>
         </tr>
@@ -87,9 +87,10 @@ const ScoreContextProvider = ({ children }) => {
     const latestScore = relevantScoresArray.sort(
       (a, b) => new Date(b.date) - new Date(a.date)
     )[0];
+
     return (
-      <tr key={Math.random()}>
-        <td>{latestScore.nickname}</td>
+      <tr>
+        <td>{latestScore.userId.nickname}</td>
         <td>{latestScore.score}</td>
         <td>{latestScore.date}</td>
       </tr>
@@ -102,8 +103,8 @@ const ScoreContextProvider = ({ children }) => {
       (a, b) => b.score - a.score
     )[0];
     return (
-      <tr key={Math.random()}>
-        <td>{latestScore.nickname}</td>
+      <tr>
+        <td>{latestScore.userId.nickname}</td>
         <td>{latestScore.score}</td>
         <td>{latestScore.date}</td>
       </tr>
@@ -116,6 +117,8 @@ const ScoreContextProvider = ({ children }) => {
         postScore,
         currentGame,
         setCurrentGame,
+        currentScore,
+        setCurrentScore,
         getAllScores,
         renderScores,
         getUserScores,

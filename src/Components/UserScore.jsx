@@ -6,6 +6,8 @@ const UserScore = () => {
   const {
     currentGame,
     setCurrentGame,
+    cuurentScore,
+    setCurretnScore,
     allScoresArrayKGame,
     setAllScoresArrayKGame,
     userScoresArrayKGame,
@@ -23,7 +25,7 @@ const UserScore = () => {
 
   useEffect(() => {
     getUserScores("kgame");
-    getLoggedUser("kgame");
+    getLoggedUser();
   }, []);
 
   return (
@@ -67,7 +69,7 @@ const UserScore = () => {
                 <th> Date</th>
               </tr>
             </thead>
-            <tbody> {renderHighestUserScore(userScoresArrayIGame)}</tbody>
+            <tbody> {renderHighestUserScore(userScoresArrayKGame)}</tbody>
           </table>
         </div>
       )}
