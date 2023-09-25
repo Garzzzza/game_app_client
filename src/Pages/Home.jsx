@@ -41,15 +41,6 @@ const Home = () => {
           <button>Play IGame</button>
         </div>
       )} */}
-
-      <button
-        onClick={() => {
-          setCurrentScore(7);
-        }}
-      >
-        setScore
-      </button>
-      <button onClick={() => postScore("kgame")}>postScore</button>
     </div>
   );
 };
