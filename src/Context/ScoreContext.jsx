@@ -77,7 +77,7 @@ const ScoreContextProvider = ({ children }) => {
         <tr>
           <td>{score.userId.nickname}</td>
           <td>{score.score}</td>
-          <td>{score.date}</td>
+          <td>{new Date(score.date).toLocaleDateString()}</td>
         </tr>
       );
     });
@@ -92,7 +92,7 @@ const ScoreContextProvider = ({ children }) => {
       <tr>
         <td>{latestScore.userId.nickname}</td>
         <td>{latestScore.score}</td>
-        <td>{latestScore.date}</td>
+        <td>{new Date(latestScore.date).toLocaleDateString()}</td>
       </tr>
     );
   }
@@ -106,7 +106,7 @@ const ScoreContextProvider = ({ children }) => {
       <tr>
         <td>{latestScore.userId.nickname}</td>
         <td>{latestScore.score}</td>
-        <td>{latestScore.date}</td>
+        <td>{new Date(latestScore.date).toLocaleDateString()}</td>
       </tr>
     );
   }
