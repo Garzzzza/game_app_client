@@ -9,6 +9,8 @@ import ScoresPage from "./Pages/ScorePage";
 import ScoreContextProvider from "./Context/ScoreContext";
 import IGame from "./Pages/IGame";
 import KGame from "./Pages/KGame";
+import PokeTanksPage from "./Components/PokeTanksPage/PokeTanksPage";
+import GameBoard from "./Components/GameBoard/GameBoard";
 
 function App() {
   return (
@@ -21,8 +23,9 @@ function App() {
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
             <Route path="/scores" element={<ScoresPage />} />
-            <Route path="/igame" element={<IGame />} />
+            <Route path="/igame" element={<PokeTanksPage />} />
             <Route path="/kgame" element={<KGame />} />
+            <Route path="/poketanksgame" element={<GameBoard />} />
           </Routes>
         </div>
       </ScoreContextProvider>
