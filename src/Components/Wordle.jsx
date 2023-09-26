@@ -68,7 +68,8 @@ export default function Wordle({ solution, showButton, handleShowButton, handleS
       )}
 
       <Grid guesses={guesses} currentGuess={currentGuess} turn={turn} />
-      <Keypad usedKeys={usedKeys} />
+      {/*  <Keypad usedKeys={usedKeys} /> */}
+   
     </div>
   );
 }
