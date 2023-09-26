@@ -13,6 +13,9 @@ const ScoreContextProvider = ({ children }) => {
   const [userScoresArrayKGame, setUserScoresArrayKGame] = useState([]);
   const [allScoresArrayIGame, setAllScoresArrayIGame] = useState([]);
   const [userScoresArrayIGame, setUserScoresArrayIGame] = useState([]);
+  const [top5ScoresArrayKGame, setTop5ScoresArrayKGame] = useState([]);
+  const [top5ScoresArrayIGame, setTop5ScoresArrayIGame] = useState([]);
+
   const [currentScore, setCurrentScore] = useState(null);
   const [currentGame, setCurrentGame] = useState("");
 
@@ -111,6 +114,26 @@ const ScoreContextProvider = ({ children }) => {
     );
   }
 
+  async function getTop5Scores(game) {
+    try {
+      let setArray;
+      if (game === "kgame") {
+        setArray = setTop5ScoresArrayKGame;
+      } else if (game === "igame") {
+        setArray = setTop5ScoresArrayIGame;
+      }
+
+      const response = await axios.get(
+        process.env.REACT_APP_SERVER_URL + "/scores/top5/" + game,
+        { headers: { Authorization: "Bearer " + token } }
+      );
+
+      setArray(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   return (
     <ScoreContext.Provider
       value={{
@@ -133,6 +156,11 @@ const ScoreContextProvider = ({ children }) => {
         setUserScoresArrayIGame,
         renderLastUserScore,
         renderHighestUserScore,
+        getTop5Scores,
+        top5ScoresArrayKGame,
+        setTop5ScoresArrayKGame,
+        top5ScoresArrayIGame,
+        setTop5ScoresArrayIGame,
       }}
     >
       {children}
