@@ -11,6 +11,7 @@
   z-index: 1;
   position: relative;
   flex: 1;
+  left: 290px;
 }
 
 #controls {
