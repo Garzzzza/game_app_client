@@ -75,15 +75,17 @@ const ScoreContextProvider = ({ children }) => {
   }
 
   function renderScores(relevantScoresArray) {
-    return relevantScoresArray.map((score) => {
-      return (
-        <tr>
-          <td>{score.userId.nickname}</td>
-          <td>{score.score}</td>
-          <td>{new Date(score.date).toLocaleDateString()}</td>
-        </tr>
-      );
-    });
+    return relevantScoresArray
+      .sort((a, b) => new Date(b.date) - new Date(a.date))
+      .map((score) => {
+        return (
+          <tr>
+            <td>{score.userId.nickname}</td>
+            <td>{score.score}</td>
+            <td>{new Date(score.date).toLocaleDateString()}</td>
+          </tr>
+        );
+      });
   }
   function renderLastUserScore(relevantScoresArray) {
     if (relevantScoresArray.length < 1) return null;
