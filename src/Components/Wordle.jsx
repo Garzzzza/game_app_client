@@ -4,14 +4,19 @@ import UseWordle from '../Components/UseWordle';
 import Grid from './Grid';
 import Keypad from './Keypad';
 import Message from './Massage';
+import { ScoreContext } from '../Context/ScoreContext';
 //import { ScoreContext } from '../Context/ScoreContext';
 
 export default function Wordle({ solution, showButton, handleShowButton, handleSolution, description }) {
   const { currentGuess, guesses, turn, isCorrect, usedKeys, handleKeyup } = UseWordle(solution);
   const [showMessage, setShowMessage] = useState(false);
-  const score = isCorrect ? 1000 - 100 * (turn - 1) : 0;
-  //const { postScore, currentGame, setCurrentScore } = useContext(ScoreContext);
+  let score = isCorrect ? 1000 - 100 * (turn - 1) : 0;
+  const { postScore, currentGame, setCurrentScore } = useContext(ScoreContext);
+  const [scorePosted, setScorePosted] = useState(false);
 
+  useEffect(() => {
+    setCurrentScore(1000 - 100* (turn))
+  }, [turn])
 
 
   useEffect(() => {
@@ -21,16 +26,21 @@ export default function Wordle({ solution, showButton, handleShowButton, handleS
         setShowMessage(true);
         window.removeEventListener('keyup', handleKeyup);
     
-        // Call the postScore function to add the score to the database
-        // if (isCorrect) {
-        //   postScore(currentGame);
+        // Call the postScore function to add the score to the database  
+        if (isCorrect && !scorePosted) {
           
-        //   // Update the current score in the context if isCorrect is true
-        //   setCurrentScore(score);
+          //setCurrentScore(score);
+          postScore("kgame");
+         
           
-        //   // Log the score to the console
-        //   console.log(`Current Score: ${score}`);
-        // }
+          
+          // Update the current score in the context if isCorrect is true
+  
+          
+          // Log the score to the console
+          console.log(`Current Score: ${score}`);
+          setScorePosted(true);
+        }
       
       // Delay the execution of handleSolution by 7 seconds
       setTimeout(() => {
