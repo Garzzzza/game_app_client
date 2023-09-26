@@ -35,9 +35,9 @@ const useWordle = (solution) => {
       return formattedGuess
     }
   
-    // add a new guess to the guesses state
-    // update the isCorrect state if guess is correct
-    // add one to the turn state
+    // add a new guess 
+    // update the isCorrect if correct
+    // add one to the turn 
     const addNewGuess = (formattedGuess) => {
       if (currentGuess === solution) {
         setIsCorrect(true)

@@ -55,6 +55,10 @@ export default function Wordle({ solution, showButton, handleShowButton, handleS
 
   return (
     <div>
+        <div>Your guesses need to be exactly five letters, and no repeats.</div>
+        <div>Expect some colorful feedback.</div>
+        <div>If a letter in your guess is somewhere in the word but not in the right place, it'll light up yellow.</div>
+        <div>But when you guess both the right letter and its correct position, it’ll be green.</div>
       {showMessage && (
         <Message isCorrect={isCorrect} turn={turn} solution={solution} score={score} />
       )}

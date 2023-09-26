@@ -23,11 +23,12 @@
   text-transform: uppercase;
   font-weight: bold;
   font-size: 2.5em;
+  border-radius: 25%;
 }
 
 .row>div.green {
-  --background: #5ac85a;
-  --border-color: #5ac85a;
+  --background: #a1c4a1;
+  --border-color: #a1c4a1;
   animation: flip 0.5s ease forwards;
 }
 
