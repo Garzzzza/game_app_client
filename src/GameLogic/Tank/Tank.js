@@ -99,7 +99,7 @@ class Tank {
     if (this.moveCount <= 0) {
       return;
     }
-    const moveAmount =  10;
+    const moveAmount = 10;
     if (direction === "left" && this.container.x > 10) {
       this.container.x -= moveAmount;
       this.moveCount--;
@@ -177,33 +177,3 @@ class Tank {
   }
 }
 export default Tank;
-
-//    aiAction(worldWidth, playerTank, wind) {
-
-//     if (this.aiMoveCount === undefined) {
-//       this.aiMoveCount = 0;
-//     }
-//     this.aiMoveCount++;
-//     let moveDecision = Math.random() < 0.5 ? "left" : "right";
-//     if (this.position.x > playerTank.position.x) {
-//       moveDecision = "left";
-//     } else if (this.position.x < playerTank.position.x) {
-//       moveDecision = "right";
-//     }
-//     if (this.aiMoveCount <= 2) {
-//       this.move(moveDecision, worldWidth);
-
-//     if (this.aiMoveCount === 2) {
-//       const dx = this.position.x - playerTank.position.x;
-//       const dy = this.position.y - playerTank.position.y;
-//       const distance = Math.sqrt(dx * dx + dy * dy);
-//       const targetAngle = Math.atan2(dy, dx) * (180 / Math.PI);
-//       this.angleSelf = Math.min(Math.max(targetAngle, 0), 25);
-//       const power = (distance / 10) + (wind * 5) + this.getEffectiveAngle();
-//       const randomFactor = Math.random() * 10 - 5;
-//       const effectivePower = Math.min(Math.max(power + randomFactor, 0), 50);
-//       this.setPower(effectivePower);
-//       this.aiMoveCount = 0;
-//     }
-//   }
-// }

@@ -34,7 +34,6 @@ const AuthContextProvider = ({ children }) => {
       setError("All fields are required!");
       return;
     }
-
     try {
       const userData = new FormData();
       userData.append("firstName", firstName.toLowerCase());
@@ -44,7 +43,6 @@ const AuthContextProvider = ({ children }) => {
       userData.append("picture", picture);
       userData.append("password", pass);
       userData.append("rePassword", rePass);
-
       const response = await axios.post(
         process.env.REACT_APP_SERVER_URL + "/users",
         userData
