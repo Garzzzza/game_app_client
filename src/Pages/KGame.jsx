@@ -27,7 +27,6 @@ const KGame = () => {
         { headers: { Authorization: "Bearer " + token } }
       );
       setSolutions(response.data);
-      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
