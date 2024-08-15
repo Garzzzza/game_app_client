@@ -1,12 +1,12 @@
 import Phaser from "phaser";
-import mapData from '../../MapData/mapData.json';  
+import mapData from "../../MapData/mapData.json";
 
 class Shell extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y, angle, power, wind = { angle: 0, force: 0 }) {
-    super(scene, x, y, 'shell');
+    super(scene, x, y, "shell");
     scene.add.existing(this);
     scene.physics.add.existing(this);
-    
+
     this.isActive = true;
     this.wind = wind;
     this.gravity = 9.8;
@@ -27,7 +27,7 @@ class Shell extends Phaser.Physics.Arcade.Sprite {
     }
 
     this.angle = Phaser.Math.RadToDeg(
-      Math.atan2(-this.body.velocity.y, this.body.velocity.x)
+      Math.atan2(-this.body.velocity.y, this.body.velocity.x),
     );
     this.setAccelerationY(this.gravity);
     const windAngleInRadians = Phaser.Math.DegToRad(this.wind.angle);

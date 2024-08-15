@@ -12,7 +12,7 @@
   justify-content: center;
 }
 
-.row>div {
+.row > div {
   display: block;
   width: 60px;
   height: 60px;
@@ -26,41 +26,41 @@
   border-radius: 25%;
 }
 
-.row>div.green {
+.row > div.green {
   --background: #a1c4a1;
   --border-color: #a1c4a1;
   animation: flip 0.5s ease forwards;
 }
 
-.row>div.grey {
+.row > div.grey {
   --background: #a1a1a1;
   --border-color: #a1a1a1;
   animation: flip 0.6s ease forwards;
 }
 
-.row>div.yellow {
+.row > div.yellow {
   --background: #e2cc68;
   --border-color: #e2cc68;
   animation: flip 0.5s ease forwards;
 }
 
-.row>div:nth-child(2) {
+.row > div:nth-child(2) {
   animation-delay: 0.2s;
 }
 
-.row>div:nth-child(3) {
+.row > div:nth-child(3) {
   animation-delay: 0.4s;
 }
 
-.row>div:nth-child(4) {
+.row > div:nth-child(4) {
   animation-delay: 0.6s;
 }
 
-.row>div:nth-child(5) {
+.row > div:nth-child(5) {
   animation-delay: 0.8s;
 }
 
-.row.current>div.filled {
+.row.current > div.filled {
   animation: bounce 0.2s ease-in-out forwards;
 }
 
@@ -69,7 +69,7 @@
   margin: 20px auto;
 }
 
-.keypad>div {
+.keypad > div {
   margin: 5px;
   width: 40px;
   height: 50px;

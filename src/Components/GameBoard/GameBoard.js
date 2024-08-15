@@ -21,12 +21,10 @@ const GameBoard = () => {
   const angleRef = useRef(0);
   const [playerTankHealth, setPlayerTankHealth] = useState(3);
   const [enemyTankHealth, setEnemyTankHealth] = useState(3);
-  const [hitCounter, setHitCounter] = useState(3); 
-  const [audioFile, setAudioFile] = useState('');
-
+  const [hitCounter, setHitCounter] = useState(3);
+  const [audioFile, setAudioFile] = useState("");
 
   const navigate = useNavigate();
-  
 
   const playerTankRef = useRef(new Tank(/*...*/));
   const enemyTankRef = useRef(new Tank(/*...*/));
@@ -52,8 +50,7 @@ const GameBoard = () => {
   let playerTank;
   let enemyTank;
   let shellIsActive = true;
-  let count  = 0;
-
+  let count = 0;
 
   const barrelLength = 41.988;
   const initialX = 1000;
@@ -89,7 +86,7 @@ const GameBoard = () => {
   useEffect(() => {
     if (hitCounter === 2) {
       if (audioRef.current) {
-        audioRef.current.src = audioFile2; 
+        audioRef.current.src = audioFile2;
         audioRef.current.load();
         audioRef.current.play();
       }
@@ -127,7 +124,7 @@ const GameBoard = () => {
         hill.x - hill.width / 2 - hill.flat,
         hill.y,
         hill.flat,
-        50
+        50,
       );
       graphics.fillRect(hill.x + hill.width / 2, hill.y, hill.flat, 50);
 
@@ -150,7 +147,7 @@ const GameBoard = () => {
       0,
       true,
       power,
-      5
+      5,
     );
 
     playerTank.body = this.add.image(0, 0, "body");
@@ -177,7 +174,7 @@ const GameBoard = () => {
       0,
       false,
       power,
-      5
+      5,
     );
 
     enemyTank.body = this.add.image(0, 0, "body");
@@ -187,7 +184,7 @@ const GameBoard = () => {
     const enemyTankContainer = this.add.container(
       enemyInitialX,
       enemyInitialY,
-      [enemyTank.wheels, enemyTank.body, enemyTank.barrel]
+      [enemyTank.wheels, enemyTank.body, enemyTank.barrel],
     );
 
     enemyTank.container = enemyTankContainer;
@@ -203,9 +200,13 @@ const GameBoard = () => {
 
   function gameOver(message) {
     setTimeout(() => {
-      const userChoice = window.confirm("Game Over: " + message + "\nWould you like to go back to the main menu?");
+      const userChoice = window.confirm(
+        "Game Over: " +
+          message +
+          "\nWould you like to go back to the main menu?",
+      );
       if (userChoice) {
-        navigate('/igame');
+        navigate("/igame");
       }
     }, 100);
   }
@@ -228,10 +229,10 @@ const GameBoard = () => {
     if (this.shell && shellIsActive) {
       const hitEnemy = this.shell.checkCollision(enemyTank);
       if (hitEnemy) {
-        setHitCounter(prevCounter => prevCounter - 1);
-        count ++;
+        setHitCounter((prevCounter) => prevCounter - 1);
+        count++;
         if (count >= 3) {
-          gameOver('You Win');
+          gameOver("You Win");
           return;
         }
       }
@@ -249,7 +250,7 @@ const GameBoard = () => {
       enemyTankY >= playerTankY - collisionBoxSize &&
       enemyTankY <= playerTankY + collisionBoxSize
     ) {
-      gameOver('You Lose');
+      gameOver("You Lose");
       return;
     }
 
@@ -300,7 +301,6 @@ const GameBoard = () => {
     setPower(newPower);
   };
 
-
   return (
     <div>
       <div id="game-container"></div>
@@ -311,20 +311,22 @@ const GameBoard = () => {
       </div>
       <div className="health-bar right">
         <div
-          className={`health-bar-cell ${enemyTankHealth > 2
-            ? "green"
-            : enemyTankHealth > 1
-              ? "yellow"
-              : "red"
-            }`}
+          className={`health-bar-cell ${
+            enemyTankHealth > 2
+              ? "green"
+              : enemyTankHealth > 1
+                ? "yellow"
+                : "red"
+          }`}
         ></div>
         <div
-          className={`health-bar-cell ${enemyTankHealth > 1
-            ? "green"
-            : enemyTankHealth > 0
-              ? "yellow"
-              : "red"
-            }`}
+          className={`health-bar-cell ${
+            enemyTankHealth > 1
+              ? "green"
+              : enemyTankHealth > 0
+                ? "yellow"
+                : "red"
+          }`}
         ></div>
         <div
           className={`health-bar-cell ${enemyTankHealth > 0 ? "green" : "red"}`}
@@ -370,7 +372,7 @@ const GameBoard = () => {
 
           <div id="angle-display">
             <span id="angle-span">{effectiveAngle}</span>
-            <span id="degree-span" >degrees</span>
+            <span id="degree-span">degrees</span>
           </div>
         </div>
       </div>

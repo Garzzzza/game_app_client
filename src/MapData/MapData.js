@@ -7,7 +7,7 @@ const hillData = [
   { x: 350, y: 550, width: 200, height: 80, flat: 50 },
   { x: 600, y: 550, width: 150, height: 60, flat: 50 },
   { x: 850, y: 550, width: 200, height: 80, flat: 50 },
-  { x: 1100, y: 550, width: 150, height: 60, flat: 50 }
+  { x: 1100, y: 550, width: 150, height: 60, flat: 50 },
 ];
 
 for (let x = 0; x <= 1199; x++) {
@@ -16,8 +16,8 @@ for (let x = 0; x <= 1199; x++) {
 
 hillData.forEach((hill) => {
   const halfWidth = hill.width / 2;
-  const startX = hill.x - halfWidth - hill.flat; 
-  const endX = hill.x + halfWidth + hill.flat;    
+  const startX = hill.x - halfWidth - hill.flat;
+  const endX = hill.x + halfWidth + hill.flat;
   const topY = hill.y - hill.height;
 
   for (let x = startX; x < hill.x - halfWidth; x++) {

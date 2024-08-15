@@ -14,7 +14,7 @@ class Tank {
     isTurn,
     power,
     shellCount,
-    type = "player"
+    type = "player",
   ) {
     this.type = type !== undefined ? type : "player";
 
@@ -89,7 +89,7 @@ class Tank {
     const angleSelfRad = Phaser.Math.DegToRad(this.angleSelf);
     const effectiveAngleRad = Math.PI + (-angleTerrainRad + angleSelfRad);
     const effectiveAngle = parseFloat(
-      Phaser.Math.RadToDeg(effectiveAngleRad).toFixed(2)
+      Phaser.Math.RadToDeg(effectiveAngleRad).toFixed(2),
     );
 
     return effectiveAngle;
@@ -159,7 +159,7 @@ class Tank {
       finalX,
       finalY,
       adjustedAngle,
-      effectivePower
+      effectivePower,
     );
     scene.shell = newShell;
   }

@@ -65,7 +65,7 @@
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  margin-left: auto; 
+  margin-left: auto;
   border-radius: 50px;
 }
 
@@ -74,7 +74,7 @@
   color: #000000 !important;
   margin-bottom: 0;
   padding-bottom: 0;
-  font-weight: 400 ;
+  font-weight: 400;
 }
 
 #degree-span {
@@ -104,8 +104,8 @@
 }
 
 .health-bar {
-  width: 200px; 
-  height: 200px; 
+  width: 200px;
+  height: 200px;
   display: flex;
   flex-direction: column;
   margin: 0;
@@ -113,15 +113,15 @@
 
 .left {
   position: absolute;
-  left: 0;  
-  top: 50%; 
+  left: 0;
+  top: 50%;
   margin-left: 10%;
 }
 
 .right {
   position: absolute;
-  right: 0; 
-  top: 50%; 
+  right: 0;
+  top: 50%;
   margin-right: 2%;
 }
 
@@ -147,14 +147,14 @@
   display: inline-block;
   margin-left: 20px;
   margin-right: 20px;
-  background-color: rgb(30, 45, 156);  
-  padding: 10px;            
-  border-radius: 5px;      
-  font-size: 24px;          
+  background-color: rgb(30, 45, 156);
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 24px;
 }
 
 .instructions span {
-  margin-right: 15px;  
-  white-space: normal; 
-  line-height: 1.5;    
+  margin-right: 15px;
+  white-space: normal;
+  line-height: 1.5;
 }
